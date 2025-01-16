@@ -12,7 +12,8 @@ const Layout_Effect = (props : Props) => {
         console.log("in layout effect")
 
         if(divRef.current){
-        setsize(divRef.current.getBoundingClientRect().width)
+            // setting the size of the div to the boundary of the dom
+            setsize(divRef.current.getBoundingClientRect().width)
         }
     
     }, [])

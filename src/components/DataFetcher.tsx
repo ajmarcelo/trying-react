@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react'
 
-const DataFetcher: React.FC = () => {
+interface DataFetcherProps {
+  id : string
+}
+
+const DataFetcher: React.FC<DataFetcherProps> = ({id}) => {
   
     const [data, setData] = useState<any[]>([])
 
     const [loading, setLoading] = useState<boolean>(true)
 
     useEffect(()=>{
-        fetch('https://jsonplaceholder.typicode.com/todos/1').then((res)=>
+        fetch(`https://jsonplaceholder.typicode.com/todos/${id}`).then((res)=>
             res.json()).then((data)=>{
                 console.log(data)
                 setData(data)
@@ -19,7 +23,7 @@ const DataFetcher: React.FC = () => {
     return (
     <div>
       {
-        loading ? <h1>Loading data...</h1> : <h1>{data['title']}</h1>
+        loading ? <h1>Loading data...</h1> :  <h1> Data for ID#{id}: {data['title']}</h1>
       }
     </div>
   )
